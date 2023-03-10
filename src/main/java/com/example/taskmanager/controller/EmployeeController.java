@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -38,10 +39,32 @@ public class EmployeeController {
 
         return "redirect:/index";
     }
-
+//read all employees
     @GetMapping("/employee/all")
     public String getAllEmployees(Model model){
         model.addAttribute("employees", employeeService.getAllEmployees());
         return "all_employees";
+    }
+
+    //Update employee form
+    @GetMapping("/employee/update-form/{id}")
+    public String updateEmployeeForm(@PathVariable("id") Integer id, Model model, CreateEmployeeDTO employeeDTO){
+        model.addAttribute("id", id);
+        model.addAttribute("updateEmployee", employeeDTO);
+        model.addAttribute("updateEmployee", employeeService.findEmployee(id));
+
+        return "update_employee";
+    }
+
+    //update employee post
+    @PostMapping("/employee-update/{id}")
+    public String updateEmployee(@PathVariable("id") Integer id,
+                                   @ModelAttribute("updateEmployee") CreateEmployeeDTO employeeDTO,
+                                   BindingResult result) {
+        if(result.hasErrors()){
+            return "update_restaurant";
+        }
+        employeeService.updateEmployee(id, employeeDTO);
+        return "redirect:/employee/all";
     }
 }

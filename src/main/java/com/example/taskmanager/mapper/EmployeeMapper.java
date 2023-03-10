@@ -29,4 +29,14 @@ public class EmployeeMapper {
 
         return createEmployeeDTO;
     }
+
+    public Employee mapEmployeeUpdateDtoToEntity(Employee employee, CreateEmployeeDTO employeeDTO) {
+        employee.setFullName(employeeDTO.getFullName());
+        employee.setEmail(employeeDTO.getEmail());
+        employee.setPhoneNumber(employeeDTO.getPhoneNumber());
+        employee.setDateOfBirth(employeeDTO.getDateOfBirth());
+        employee.setMonthlySalary(employeeDTO.getMonthlySalary());
+
+        return employee;
+    }
 }

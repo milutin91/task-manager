@@ -32,4 +32,16 @@ public class EmployeeService {
         }
         return employeeDTOS;
     }
+
+    public CreateEmployeeDTO findEmployee(Integer id) {
+        Employee employee = employeeRepository.findById(id).get();
+        return employeeMapper.mapEmployeeEntityToDto(employee);
+    }
+
+    public CreateEmployeeDTO updateEmployee(Integer id, CreateEmployeeDTO employeeDTO) {
+        Employee employeeToUpdate = employeeRepository.findById(id).get();
+        employeeToUpdate = employeeMapper.mapEmployeeUpdateDtoToEntity(employeeToUpdate, employeeDTO);
+        Employee employeeResponse = employeeRepository.save(employeeToUpdate);
+        return employeeMapper.mapEmployeeEntityToDto(employeeResponse);
+    }
 }
