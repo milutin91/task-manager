@@ -5,7 +5,7 @@ CREATE TABLE `employees` (
   `phone_number` varchar(255) not null,
   `date_of_birth` date not null,
   `monthly_salary` double not null,
-  `employee_team_id` int not null
+  `employee_team_id` int
 );
 
 CREATE TABLE `tasks` (
@@ -13,7 +13,7 @@ CREATE TABLE `tasks` (
   `title` varchar(255) not null,
   `description` varchar(255) not null,
   `due_date` datetime not null,
-  `assignee` int not null
+  `assignee` int
 );
 
 CREATE TABLE `teams` (
