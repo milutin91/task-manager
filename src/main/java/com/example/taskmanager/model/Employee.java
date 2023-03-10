@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +15,9 @@ public class Employee {
     private String phoneNumber;
     private Date dateOfBirth;
     private double monthlySalary;
+    @ManyToOne
+    @JoinColumn(name = "employee_team_id")
+    private Team team;
 
     public Employee() {
     }
@@ -67,6 +70,14 @@ public class Employee {
         this.monthlySalary = monthlySalary;
     }
 
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -76,6 +87,7 @@ public class Employee {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", monthlySalary=" + monthlySalary +
+                ", team=" + team +
                 '}';
     }
 }
