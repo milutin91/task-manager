@@ -21,9 +21,9 @@ public class EmployeeMapper {
     public CreateEmployeeDTO mapEmployeeEntityToDto(Employee employee){
         CreateEmployeeDTO createEmployeeDTO = new CreateEmployeeDTO();
 
-        createEmployeeDTO.setFullName(createEmployeeDTO.getFullName());
+        createEmployeeDTO.setFullName(employee.getFullName());
         createEmployeeDTO.setEmail(employee.getEmail());
-        createEmployeeDTO.setPhoneNumber(createEmployeeDTO.getPhoneNumber());
+        createEmployeeDTO.setPhoneNumber(employee.getPhoneNumber());
         createEmployeeDTO.setDateOfBirth(employee.getDateOfBirth());
         createEmployeeDTO.setMonthlySalary(employee.getMonthlySalary());
 

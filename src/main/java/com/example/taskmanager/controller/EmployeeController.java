@@ -21,21 +21,27 @@ public class EmployeeController {
         return "index";
     }
 
-
+//employee add form
     @GetMapping("/employee/add")
     public String addEmployee(CreateEmployeeDTO employeeDTO, Model model) {
         model.addAttribute("newEmployee", employeeDTO);
         return "add_employees";
     }
-
+//employee add post
     @PostMapping("/employee/create")
     public String createEmployee(@ModelAttribute("newEmployee") CreateEmployeeDTO createEmployeeDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            return "index";
+            return "add_employees";
         }
         employeeService.createEmployee(createEmployeeDTO);
 
-        return "redirect:/employee/add";
+        return "redirect:/index";
+    }
+
+    @GetMapping("/employee/all")
+    public String getAllEmployees(Model model){
+        model.addAttribute("employees", employeeService.getAllEmployees());
+        return "all_employees";
     }
 }

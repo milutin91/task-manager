@@ -7,6 +7,9 @@ import com.example.taskmanager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class EmployeeService {
     @Autowired
@@ -19,5 +22,14 @@ public class EmployeeService {
         Employee employeeResponse = employeeRepository.save(employee);
 
         return employeeMapper.mapEmployeeEntityToDto(employeeResponse);
+    }
+
+    public List<CreateEmployeeDTO> getAllEmployees() {
+        List<Employee> employees = employeeRepository.findAll();
+        List<CreateEmployeeDTO> employeeDTOS = new ArrayList<>();
+        for (Employee employee : employees) {
+            employeeDTOS.add(employeeMapper.mapEmployeeEntityToDto(employee));
+        }
+        return employeeDTOS;
     }
 }
