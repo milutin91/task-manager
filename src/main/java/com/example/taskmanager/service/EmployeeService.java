@@ -3,6 +3,7 @@ package com.example.taskmanager.service;
 import com.example.taskmanager.mapper.EmployeeMapper;
 import com.example.taskmanager.DTO.CreateEmployeeDTO;
 import com.example.taskmanager.model.Employee;
+import com.example.taskmanager.model.Task;
 import com.example.taskmanager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,13 @@ public class EmployeeService {
         employeeToUpdate = employeeMapper.mapEmployeeUpdateDtoToEntity(employeeToUpdate, employeeDTO);
         Employee employeeResponse = employeeRepository.save(employeeToUpdate);
         return employeeMapper.mapEmployeeEntityToDto(employeeResponse);
+    }
+
+    public void deleteEmployee(Integer id) {
+        List<Task> tasks = employeeRepository.findById(id).get().getTasks();
+        for (Task task : tasks) {
+            task.setAssignee(null);
+        }
+        employeeRepository.deleteById(id);
     }
 }

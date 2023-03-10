@@ -28,7 +28,7 @@ public class EmployeeController {
         model.addAttribute("newEmployee", employeeDTO);
         return "add_employees";
     }
-//employee add post
+//employee add action
     @PostMapping("/employee/create")
     public String createEmployee(@ModelAttribute("newEmployee") CreateEmployeeDTO createEmployeeDTO, BindingResult bindingResult){
 
@@ -56,7 +56,7 @@ public class EmployeeController {
         return "update_employee";
     }
 
-    //update employee post
+    //update employee action
     @PostMapping("/employee-update/{id}")
     public String updateEmployee(@PathVariable("id") Integer id,
                                    @ModelAttribute("updateEmployee") CreateEmployeeDTO employeeDTO,
@@ -65,6 +65,13 @@ public class EmployeeController {
             return "update_restaurant";
         }
         employeeService.updateEmployee(id, employeeDTO);
+        return "redirect:/employee/all";
+    }
+
+    //delete employee
+    @GetMapping("/employee-delete/{id}")
+    public String deleteEmployee(@PathVariable("id") Integer id) {
+        employeeService.deleteEmployee(id);
         return "redirect:/employee/all";
     }
 }
