@@ -35,4 +35,16 @@ public class TaskService {
         }
         return taskDTOS;
     }
+
+    public CreateTaskDTO findTask(Integer id) {
+        Task task = taskRepository.findById(id).get();
+        return taskMapper.mapEntityToDto(task);
+    }
+
+    public CreateTaskDTO updateTask(Integer id, CreateTaskDTO taskDTO) {
+        Task taskToUpdate = taskRepository.findById(id).get();
+        taskToUpdate = taskMapper.mapDtoToEntityUpdate(taskToUpdate, taskDTO);
+        Task taskResponse = taskRepository.save(taskToUpdate);
+        return taskMapper.mapEntityToDto(taskResponse);
+    }
 }

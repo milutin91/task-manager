@@ -62,7 +62,7 @@ public class EmployeeController {
                                    @ModelAttribute("updateEmployee") CreateEmployeeDTO employeeDTO,
                                    BindingResult result) {
         if(result.hasErrors()){
-            return "update_restaurant";
+            return "update_employee";
         }
         employeeService.updateEmployee(id, employeeDTO);
         return "redirect:/employee/all";
