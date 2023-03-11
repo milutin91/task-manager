@@ -47,4 +47,12 @@ public class TaskService {
         Task taskResponse = taskRepository.save(taskToUpdate);
         return taskMapper.mapEntityToDto(taskResponse);
     }
+
+    public void deleteTask(Integer id) {
+//        List<Task> tasks = taskRepository.findById(id).get().;
+//        for (Task task : tasks) {
+//            task.setAssignee(null);
+//        }
+        taskRepository.deleteById(id);
+    }
 }

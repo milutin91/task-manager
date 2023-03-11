@@ -66,4 +66,11 @@ public class TaskController {
         taskService.updateTask(id, taskDTO);
         return "redirect:/task/all";
     }
+
+    //delete task
+    @GetMapping("/task-delete/{id}")
+    public String deleteTask(@PathVariable("id") Integer id) {
+        taskService.deleteTask(id);
+        return "redirect:/task/all";
+    }
 }
