@@ -9,6 +9,9 @@ import com.example.taskmanager.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TaskService {
     @Autowired
@@ -22,5 +25,14 @@ public class TaskService {
         Task taskResponse = taskRepository.save(task);
 
         return taskMapper.mapEntityToDto(taskResponse);
+    }
+
+    public List<CreateTaskDTO> getAllTasks() {
+        List<Task> tasks = taskRepository.findAll();
+        List<CreateTaskDTO> taskDTOS = new ArrayList<>();
+        for (Task task : tasks) {
+            taskDTOS.add(taskMapper.mapEntityToDto(task));
+        }
+        return taskDTOS;
     }
 }

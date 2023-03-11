@@ -35,4 +35,12 @@ public class TaskController {
 
         return "redirect:/index";
     }
+
+//    read all tasks
+
+    @GetMapping("/task/all")
+    public String getAllTasks(Model model){
+        model.addAttribute("tasks", taskService.getAllTasks());
+        return "all_tasks";
+    }
 }
