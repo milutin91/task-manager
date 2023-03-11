@@ -2,6 +2,8 @@ package com.example.taskmanager.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "teams")
 public class Team {
@@ -9,6 +11,9 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int teamId;
     private String teamName;
+
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    private List<Employee> employees;
 
     public Team() {
     }

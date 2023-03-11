@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
-
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 @Query(value = "SELECT assignee from tasks\n" +
         "WHERE YEAR(due_date) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)\n" +
