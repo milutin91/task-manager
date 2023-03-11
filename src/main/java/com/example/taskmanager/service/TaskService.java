@@ -1,6 +1,6 @@
 package com.example.taskmanager.service;
 
-import com.example.taskmanager.DTO.CreateTaskDTO;
+import com.example.taskmanager.DTO.TaskDTO;
 import com.example.taskmanager.DTO.EmployeeForTopFiveDTO;
 import com.example.taskmanager.mapper.TaskMapper;
 import com.example.taskmanager.model.Task;
@@ -20,28 +20,28 @@ public class TaskService {
     @Autowired
     private TaskMapper taskMapper;
 
-    public CreateTaskDTO createTask(CreateTaskDTO taskDTO) {
+    public TaskDTO createTask(TaskDTO taskDTO) {
         Task task = taskMapper.matDtoToEntity(taskDTO);
         Task taskResponse = taskRepository.save(task);
 
         return taskMapper.mapEntityToDto(taskResponse);
     }
 
-    public List<CreateTaskDTO> getAllTasks() {
+    public List<TaskDTO> getAllTasks() {
         List<Task> tasks = taskRepository.findAll();
-        List<CreateTaskDTO> taskDTOS = new ArrayList<>();
+        List<TaskDTO> taskDTOS = new ArrayList<>();
         for (Task task : tasks) {
             taskDTOS.add(taskMapper.mapEntityToDto(task));
         }
         return taskDTOS;
     }
 
-    public CreateTaskDTO findTask(Integer id) {
+    public TaskDTO findTask(Integer id) {
         Task task = taskRepository.findById(id).get();
         return taskMapper.mapEntityToDto(task);
     }
 
-    public CreateTaskDTO updateTask(Integer id, CreateTaskDTO taskDTO) {
+    public TaskDTO updateTask(Integer id, TaskDTO taskDTO) {
         Task taskToUpdate = taskRepository.findById(id).get();
         taskToUpdate = taskMapper.mapDtoToEntityUpdate(taskToUpdate, taskDTO);
         Task taskResponse = taskRepository.save(taskToUpdate);
@@ -53,7 +53,7 @@ public class TaskService {
     }
 
     public List<EmployeeForTopFiveDTO> getTopFiveEmployees() {
-        List<Integer> employees = taskRepository.top5();
+        List<Integer> employees = taskRepository.findTopFiveEmployees();
         List<EmployeeForTopFiveDTO> employeeForTopFiveDTOS = new ArrayList<>();
         for (Integer employee : employees) {
             employeeForTopFiveDTOS.add(taskMapper.mapTopEntityToDto(employee));
@@ -61,10 +61,10 @@ public class TaskService {
         return employeeForTopFiveDTOS;
     }
 
-    public List<CreateTaskDTO> getActiveTasks() {
+    public List<TaskDTO> getActiveTasks() {
         LocalDateTime now = LocalDateTime.now();
         List<Task> tasks = taskRepository.findByDueDateGreaterThan(now);
-        List<CreateTaskDTO> activeTaskDTOS = new ArrayList<>();
+        List<TaskDTO> activeTaskDTOS = new ArrayList<>();
         for (Task task : tasks) {
             activeTaskDTOS.add(taskMapper.mapEntityToDto(task));
         }

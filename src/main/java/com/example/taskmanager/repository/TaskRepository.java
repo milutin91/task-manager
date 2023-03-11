@@ -1,9 +1,6 @@
 package com.example.taskmanager.repository;
 
-import com.example.taskmanager.DTO.EmployeeForTopFiveDTO;
-import com.example.taskmanager.model.Employee;
 import com.example.taskmanager.model.Task;
-import jakarta.persistence.criteria.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -16,7 +13,7 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
         "\tGROUP BY assignee\n" +
         "\tORDER BY count(*) desc\n" +
         "    limit 5;", nativeQuery = true)
-    List<Integer> top5();
+    List<Integer> findTopFiveEmployees();
 
     List<Task> findByDueDateGreaterThan(LocalDateTime now);
 }

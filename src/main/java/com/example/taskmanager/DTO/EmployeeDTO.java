@@ -4,7 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class CreateEmployeeDTO {
+public class EmployeeDTO {
     private String fullName;
     private String email;
     private String phoneNumber;
@@ -12,7 +12,7 @@ public class CreateEmployeeDTO {
     private Date dateOfBirth;
     private double monthlySalary;
 
-    public CreateEmployeeDTO() {
+    public EmployeeDTO() {
     }
 
     public String getFullName() {

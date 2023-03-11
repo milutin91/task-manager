@@ -1,6 +1,6 @@
 package com.example.taskmanager.mapper;
 
-import com.example.taskmanager.DTO.CreateTaskDTO;
+import com.example.taskmanager.DTO.TaskDTO;
 import com.example.taskmanager.DTO.EmployeeForTopFiveDTO;
 import com.example.taskmanager.model.Task;
 import com.example.taskmanager.repository.EmployeeRepository;
@@ -15,7 +15,7 @@ public class TaskMapper {
     TaskRepository taskRepository;
     @Autowired
     EmployeeRepository employeeRepository;
-    public Task matDtoToEntity(CreateTaskDTO taskDTO){
+    public Task matDtoToEntity(TaskDTO taskDTO){
         Task task = new Task();
 
         task.setTitle(taskDTO.getTitle());
@@ -26,8 +26,8 @@ public class TaskMapper {
         return task;
     }
 
-    public CreateTaskDTO mapEntityToDto(Task task){
-         CreateTaskDTO taskDTO = new CreateTaskDTO();
+    public TaskDTO mapEntityToDto(Task task){
+         TaskDTO taskDTO = new TaskDTO();
 
          taskDTO.setTitle(task.getTitle());
          taskDTO.setDescription(task.getDescription());
@@ -37,7 +37,7 @@ public class TaskMapper {
          return taskDTO;
     }
 
-    public Task mapDtoToEntityUpdate(Task task, CreateTaskDTO taskDTO){
+    public Task mapDtoToEntityUpdate(Task task, TaskDTO taskDTO){
         task.setTitle(taskDTO.getTitle());
         task.setDescription(taskDTO.getDescription());
         task.setDueDate(taskDTO.getDueDate());

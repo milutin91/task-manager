@@ -1,7 +1,7 @@
 package com.example.taskmanager.service;
 
 import com.example.taskmanager.mapper.EmployeeMapper;
-import com.example.taskmanager.DTO.CreateEmployeeDTO;
+import com.example.taskmanager.DTO.EmployeeDTO;
 import com.example.taskmanager.model.Employee;
 import com.example.taskmanager.model.Task;
 import com.example.taskmanager.repository.EmployeeRepository;
@@ -18,28 +18,28 @@ public class EmployeeService {
     @Autowired
     private EmployeeMapper employeeMapper;
 
-    public CreateEmployeeDTO createEmployee(CreateEmployeeDTO createEmployeeDTO) {
-        Employee employee = employeeMapper.mapEmployeeDtoToEntity(createEmployeeDTO);
+    public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = employeeMapper.mapEmployeeDtoToEntity(employeeDTO);
         Employee employeeResponse = employeeRepository.save(employee);
 
         return employeeMapper.mapEmployeeEntityToDto(employeeResponse);
     }
 
-    public List<CreateEmployeeDTO> getAllEmployees() {
+    public List<EmployeeDTO> getAllEmployees() {
         List<Employee> employees = employeeRepository.findAll();
-        List<CreateEmployeeDTO> employeeDTOS = new ArrayList<>();
+        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
         for (Employee employee : employees) {
             employeeDTOS.add(employeeMapper.mapEmployeeEntityToDto(employee));
         }
         return employeeDTOS;
     }
 
-    public CreateEmployeeDTO findEmployee(Integer id) {
+    public EmployeeDTO findEmployee(Integer id) {
         Employee employee = employeeRepository.findById(id).get();
         return employeeMapper.mapEmployeeEntityToDto(employee);
     }
 
-    public CreateEmployeeDTO updateEmployee(Integer id, CreateEmployeeDTO employeeDTO) {
+    public EmployeeDTO updateEmployee(Integer id, EmployeeDTO employeeDTO) {
         Employee employeeToUpdate = employeeRepository.findById(id).get();
         employeeToUpdate = employeeMapper.mapEmployeeUpdateDtoToEntity(employeeToUpdate, employeeDTO);
         Employee employeeResponse = employeeRepository.save(employeeToUpdate);
