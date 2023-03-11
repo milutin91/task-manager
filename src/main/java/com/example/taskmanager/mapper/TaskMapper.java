@@ -49,9 +49,7 @@ public class TaskMapper {
     public EmployeeForTopFiveDTO mapTopEntityToDto(Integer employee){
 
         EmployeeForTopFiveDTO employeeForTopFiveDTO = new EmployeeForTopFiveDTO();
-
         employeeForTopFiveDTO.setEmployee(employeeRepository.findById(employee).get());
-//        employeeForTopFiveDTO.setEmployee(employee.getHowMany());
 
         return employeeForTopFiveDTO;
     }

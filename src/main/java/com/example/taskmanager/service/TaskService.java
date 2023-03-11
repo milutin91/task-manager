@@ -8,6 +8,7 @@ import com.example.taskmanager.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,24 +49,25 @@ public class TaskService {
     }
 
     public void deleteTask(Integer id) {
-//        List<Task> tasks = taskRepository.findById(id).get().;
-//        for (Task task : tasks) {
-//            task.setAssignee(null);
-//        }
         taskRepository.deleteById(id);
     }
 
     public List<EmployeeForTopFiveDTO> getTopFiveEmployees() {
-//        List<Employee> employees = taskRepository.top5();
-//        List<EmployeeForTopFiveDTO> employeeForTopFiveDTOS = new ArrayList<>();
-//                for (Employee employee : employees) {
-//            employeeForTopFiveDTOS.add(taskMapper.mapTopEntityToDto());
-//        }
         List<Integer> employees = taskRepository.top5();
         List<EmployeeForTopFiveDTO> employeeForTopFiveDTOS = new ArrayList<>();
         for (Integer employee : employees) {
             employeeForTopFiveDTOS.add(taskMapper.mapTopEntityToDto(employee));
         }
         return employeeForTopFiveDTOS;
+    }
+
+    public List<CreateTaskDTO> getActiveTasks() {
+        LocalDateTime now = LocalDateTime.now();
+        List<Task> tasks = taskRepository.findByDueDateGreaterThan(now);
+        List<CreateTaskDTO> activeTaskDTOS = new ArrayList<>();
+        for (Task task : tasks) {
+            activeTaskDTOS.add(taskMapper.mapEntityToDto(task));
+        }
+        return activeTaskDTOS;
     }
 }

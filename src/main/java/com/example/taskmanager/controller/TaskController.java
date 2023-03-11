@@ -80,4 +80,11 @@ public class TaskController {
         model.addAttribute("topFiveEmployees", taskService.getTopFiveEmployees());
         return "top_five_employees";
     }
+
+    //active tasks
+    @GetMapping("/task/active")
+    public String getActiveTasks(Model model){
+        model.addAttribute("activeTasks", taskService.getActiveTasks());
+        return "active_tasks";
+    }
 }

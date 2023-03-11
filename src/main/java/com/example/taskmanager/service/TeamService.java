@@ -1,9 +1,7 @@
 package com.example.taskmanager.service;
 
-import com.example.taskmanager.DTO.CreateTaskDTO;
 import com.example.taskmanager.DTO.TeamDTO;
 import com.example.taskmanager.mapper.TeamMapper;
-import com.example.taskmanager.model.Task;
 import com.example.taskmanager.model.Team;
 import com.example.taskmanager.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
