@@ -1,34 +1,18 @@
-package com.example.taskmanager.model;
+package com.example.taskmanager.DTO;
 
-import jakarta.persistence.*;
+import com.example.taskmanager.model.Employee;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Entity
-@Table(name = "tasks")
-public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int taskId;
-    private String title;
-    private String description;
+public class CreateTaskDTO {
+        private String title;
+        private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime dueDate;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "assignee")
-    private Employee assignee;
+        private LocalDateTime dueDate;
+        private Employee assignee;
 
-    public Task() {
-    }
-
-    public int getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
+    public CreateTaskDTO() {
     }
 
     public String getTitle() {
@@ -65,9 +49,8 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "taskId=" + taskId +
-                ", title='" + title + '\'' +
+        return "CreateTaskDTO{" +
+                "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", dueDate=" + dueDate +
                 ", assignee=" + assignee +
