@@ -1,9 +1,8 @@
 package com.example.taskmanager.service;
 
-import com.example.taskmanager.DTO.CreateEmployeeDTO;
 import com.example.taskmanager.DTO.CreateTaskDTO;
+import com.example.taskmanager.DTO.EmployeeForTopFiveDTO;
 import com.example.taskmanager.mapper.TaskMapper;
-import com.example.taskmanager.model.Employee;
 import com.example.taskmanager.model.Task;
 import com.example.taskmanager.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +53,19 @@ public class TaskService {
 //            task.setAssignee(null);
 //        }
         taskRepository.deleteById(id);
+    }
+
+    public List<EmployeeForTopFiveDTO> getTopFiveEmployees() {
+//        List<Employee> employees = taskRepository.top5();
+//        List<EmployeeForTopFiveDTO> employeeForTopFiveDTOS = new ArrayList<>();
+//                for (Employee employee : employees) {
+//            employeeForTopFiveDTOS.add(taskMapper.mapTopEntityToDto());
+//        }
+        List<Integer> employees = taskRepository.top5();
+        List<EmployeeForTopFiveDTO> employeeForTopFiveDTOS = new ArrayList<>();
+        for (Integer employee : employees) {
+            employeeForTopFiveDTOS.add(taskMapper.mapTopEntityToDto(employee));
+        }
+        return employeeForTopFiveDTOS;
     }
 }
