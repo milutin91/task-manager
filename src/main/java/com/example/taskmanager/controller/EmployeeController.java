@@ -1,6 +1,6 @@
 package com.example.taskmanager.controller;
 
-import com.example.taskmanager.DTO.CreateEmployeeDTO;
+import com.example.taskmanager.DTO.EmployeeDTO;
 import com.example.taskmanager.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,18 +24,18 @@ public class EmployeeController {
 
 //employee add form
     @GetMapping("/employee/add")
-    public String addEmployee(CreateEmployeeDTO employeeDTO, Model model) {
+    public String addEmployee(EmployeeDTO employeeDTO, Model model) {
         model.addAttribute("newEmployee", employeeDTO);
         return "add_employees";
     }
 //employee add action
     @PostMapping("/employee/create")
-    public String createEmployee(@ModelAttribute("newEmployee") CreateEmployeeDTO createEmployeeDTO, BindingResult bindingResult){
+    public String createEmployee(@ModelAttribute("newEmployee") EmployeeDTO employeeDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return "add_employees";
         }
-        employeeService.createEmployee(createEmployeeDTO);
+        employeeService.createEmployee(employeeDTO);
 
         return "redirect:/index";
     }
@@ -48,7 +48,7 @@ public class EmployeeController {
 
     //Update employee form
     @GetMapping("/employee/update-form/{id}")
-    public String updateEmployeeForm(@PathVariable("id") Integer id, Model model, CreateEmployeeDTO employeeDTO){
+    public String updateEmployeeForm(@PathVariable("id") Integer id, Model model, EmployeeDTO employeeDTO){
         model.addAttribute("id", id);
         model.addAttribute("updateEmployee", employeeDTO);
         model.addAttribute("updateEmployee", employeeService.findEmployee(id));
@@ -59,7 +59,7 @@ public class EmployeeController {
     //update employee action
     @PostMapping("/employee-update/{id}")
     public String updateEmployee(@PathVariable("id") Integer id,
-                                   @ModelAttribute("updateEmployee") CreateEmployeeDTO employeeDTO,
+                                   @ModelAttribute("updateEmployee") EmployeeDTO employeeDTO,
                                    BindingResult result) {
         if(result.hasErrors()){
             return "update_employee";

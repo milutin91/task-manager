@@ -1,36 +1,36 @@
 package com.example.taskmanager.mapper;
 
-import com.example.taskmanager.DTO.CreateEmployeeDTO;
+import com.example.taskmanager.DTO.EmployeeDTO;
 import com.example.taskmanager.model.Employee;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EmployeeMapper {
-    public Employee mapEmployeeDtoToEntity(CreateEmployeeDTO createEmployeeDTO){
+    public Employee mapEmployeeDtoToEntity(EmployeeDTO employeeDTO){
         Employee employee = new Employee();
 
-        employee.setFullName(createEmployeeDTO.getFullName());
-        employee.setEmail(createEmployeeDTO.getEmail());
-        employee.setPhoneNumber(createEmployeeDTO.getPhoneNumber());
-        employee.setDateOfBirth(createEmployeeDTO.getDateOfBirth());
-        employee.setMonthlySalary(createEmployeeDTO.getMonthlySalary());
+        employee.setFullName(employeeDTO.getFullName());
+        employee.setEmail(employeeDTO.getEmail());
+        employee.setPhoneNumber(employeeDTO.getPhoneNumber());
+        employee.setDateOfBirth(employeeDTO.getDateOfBirth());
+        employee.setMonthlySalary(employeeDTO.getMonthlySalary());
 
         return employee;
     }
 
-    public CreateEmployeeDTO mapEmployeeEntityToDto(Employee employee){
-        CreateEmployeeDTO createEmployeeDTO = new CreateEmployeeDTO();
+    public EmployeeDTO mapEmployeeEntityToDto(Employee employee){
+        EmployeeDTO employeeDTO = new EmployeeDTO();
 
-        createEmployeeDTO.setFullName(employee.getFullName());
-        createEmployeeDTO.setEmail(employee.getEmail());
-        createEmployeeDTO.setPhoneNumber(employee.getPhoneNumber());
-        createEmployeeDTO.setDateOfBirth(employee.getDateOfBirth());
-        createEmployeeDTO.setMonthlySalary(employee.getMonthlySalary());
+        employeeDTO.setFullName(employee.getFullName());
+        employeeDTO.setEmail(employee.getEmail());
+        employeeDTO.setPhoneNumber(employee.getPhoneNumber());
+        employeeDTO.setDateOfBirth(employee.getDateOfBirth());
+        employeeDTO.setMonthlySalary(employee.getMonthlySalary());
 
-        return createEmployeeDTO;
+        return employeeDTO;
     }
 
-    public Employee mapEmployeeUpdateDtoToEntity(Employee employee, CreateEmployeeDTO employeeDTO) {
+    public Employee mapEmployeeUpdateDtoToEntity(Employee employee, EmployeeDTO employeeDTO) {
         employee.setFullName(employeeDTO.getFullName());
         employee.setEmail(employeeDTO.getEmail());
         employee.setPhoneNumber(employeeDTO.getPhoneNumber());

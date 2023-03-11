@@ -5,14 +5,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
-public class CreateTaskDTO {
+public class TaskDTO {
         private String title;
         private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime dueDate;
         private Employee assignee;
 
-    public CreateTaskDTO() {
+    public TaskDTO() {
     }
 
     public String getTitle() {
