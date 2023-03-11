@@ -73,4 +73,11 @@ public class TaskController {
         taskService.deleteTask(id);
         return "redirect:/task/all";
     }
+
+    //top 5 employees
+    @GetMapping("/task/top-five")
+    public String getTopFive(Model model){
+        model.addAttribute("topFiveEmployees", taskService.getTopFiveEmployees());
+        return "top_five_employees";
+    }
 }
