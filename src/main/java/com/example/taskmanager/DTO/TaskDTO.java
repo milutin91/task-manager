@@ -13,6 +13,7 @@ public class TaskDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dueDate;
     private Employee assignee;
+    private String assigneeName;
 
     public TaskDTO() {
     }
@@ -55,6 +56,14 @@ public class TaskDTO {
 
     public void setAssignee(Employee assignee) {
         this.assignee = assignee;
+    }
+
+    public String getAssigneeName() {
+        return assigneeName;
+    }
+
+    public void setAssigneeName(String assigneeName) {
+        this.assigneeName = assigneeName;
     }
 
     @Override

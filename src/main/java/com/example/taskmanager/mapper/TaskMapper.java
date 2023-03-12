@@ -2,6 +2,7 @@ package com.example.taskmanager.mapper;
 
 import com.example.taskmanager.DTO.TaskDTO;
 import com.example.taskmanager.DTO.EmployeeForTopFiveDTO;
+import com.example.taskmanager.model.Employee;
 import com.example.taskmanager.model.Task;
 import com.example.taskmanager.repository.EmployeeRepository;
 import com.example.taskmanager.repository.TaskRepository;
@@ -17,12 +18,13 @@ public class TaskMapper {
     EmployeeRepository employeeRepository;
 
     public Task matDtoToEntity(TaskDTO taskDTO) {
+        Employee employee = employeeRepository.findByFullName(taskDTO.getAssigneeName());
         Task task = new Task();
 
         task.setTitle(taskDTO.getTitle());
         task.setDescription(taskDTO.getDescription());
         task.setDueDate(taskDTO.getDueDate());
-        task.setAssignee(taskDTO.getAssignee());
+        task.setAssignee(employee);
 
         return task;
     }
