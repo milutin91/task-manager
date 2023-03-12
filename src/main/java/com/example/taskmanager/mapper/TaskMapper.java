@@ -29,6 +29,7 @@ public class TaskMapper {
     public TaskDTO mapEntityToDto(Task task){
          TaskDTO taskDTO = new TaskDTO();
 
+         taskDTO.setTaskId(task.getTaskId());
          taskDTO.setTitle(task.getTitle());
          taskDTO.setDescription(task.getDescription());
          taskDTO.setDueDate(task.getDueDate());

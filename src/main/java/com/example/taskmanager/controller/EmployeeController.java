@@ -17,11 +17,6 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/index")
-    public String index(){
-        return "index";
-    }
-
 //employee add form
     @GetMapping("/employee/add")
     public String addEmployee(EmployeeDTO employeeDTO, Model model) {
@@ -37,7 +32,7 @@ public class EmployeeController {
         }
         employeeService.createEmployee(employeeDTO);
 
-        return "redirect:/index";
+        return "redirect:/employee/all";
     }
 //read all employees
     @GetMapping("/employee/all")

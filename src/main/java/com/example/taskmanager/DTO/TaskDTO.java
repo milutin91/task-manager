@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
 
 public class TaskDTO {
+
+        private int taskId;
         private String title;
         private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -13,6 +15,14 @@ public class TaskDTO {
         private Employee assignee;
 
     public TaskDTO() {
+    }
+
+    public int getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
 
     public String getTitle() {

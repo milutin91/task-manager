@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class EmployeeDTO {
+    private int employeeId;
     private String fullName;
     private String email;
     private String phoneNumber;
@@ -13,6 +14,14 @@ public class EmployeeDTO {
     private double monthlySalary;
 
     public EmployeeDTO() {
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getFullName() {

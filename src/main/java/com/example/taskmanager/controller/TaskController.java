@@ -33,7 +33,7 @@ public class TaskController {
 
         taskService.createTask(taskDTO);
 
-        return "redirect:/index";
+        return "redirect:/task/all";
     }
 
 //    read all tasks
