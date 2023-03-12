@@ -15,7 +15,8 @@ public class TaskMapper {
     TaskRepository taskRepository;
     @Autowired
     EmployeeRepository employeeRepository;
-    public Task matDtoToEntity(TaskDTO taskDTO){
+
+    public Task matDtoToEntity(TaskDTO taskDTO) {
         Task task = new Task();
 
         task.setTitle(taskDTO.getTitle());
@@ -26,19 +27,19 @@ public class TaskMapper {
         return task;
     }
 
-    public TaskDTO mapEntityToDto(Task task){
-         TaskDTO taskDTO = new TaskDTO();
+    public TaskDTO mapEntityToDto(Task task) {
+        TaskDTO taskDTO = new TaskDTO();
 
-         taskDTO.setTaskId(task.getTaskId());
-         taskDTO.setTitle(task.getTitle());
-         taskDTO.setDescription(task.getDescription());
-         taskDTO.setDueDate(task.getDueDate());
-         taskDTO.setAssignee(task.getAssignee());
+        taskDTO.setTaskId(task.getTaskId());
+        taskDTO.setTitle(task.getTitle());
+        taskDTO.setDescription(task.getDescription());
+        taskDTO.setDueDate(task.getDueDate());
+        taskDTO.setAssignee(task.getAssignee());
 
-         return taskDTO;
+        return taskDTO;
     }
 
-    public Task mapDtoToEntityUpdate(Task task, TaskDTO taskDTO){
+    public Task mapDtoToEntityUpdate(Task task, TaskDTO taskDTO) {
         task.setTitle(taskDTO.getTitle());
         task.setDescription(taskDTO.getDescription());
         task.setDueDate(taskDTO.getDueDate());
@@ -47,7 +48,7 @@ public class TaskMapper {
         return task;
     }
 
-    public EmployeeForTopFiveDTO mapTopEntityToDto(Integer employee){
+    public EmployeeForTopFiveDTO mapTopEntityToDto(Integer employee) {
 
         EmployeeForTopFiveDTO employeeForTopFiveDTO = new EmployeeForTopFiveDTO();
         employeeForTopFiveDTO.setEmployee(employeeRepository.findById(employee).get());

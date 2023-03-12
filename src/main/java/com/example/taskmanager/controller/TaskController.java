@@ -25,9 +25,9 @@ public class TaskController {
 
     //task add action
     @PostMapping("/task/create")
-    public String createTask(@ModelAttribute("newTask") TaskDTO taskDTO, BindingResult bindingResult){
+    public String createTask(@ModelAttribute("newTask") TaskDTO taskDTO, BindingResult bindingResult) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "add_tasks";
         }
 
@@ -39,14 +39,14 @@ public class TaskController {
 //    read all tasks
 
     @GetMapping("/task/all")
-    public String getAllTasks(Model model){
+    public String getAllTasks(Model model) {
         model.addAttribute("tasks", taskService.getAllTasks());
         return "all_tasks";
     }
 
     //Update task form
     @GetMapping("/task/update-form/{id}")
-    public String updateTaskForm(@PathVariable("id") Integer id, Model model, TaskDTO taskDTO){
+    public String updateTaskForm(@PathVariable("id") Integer id, Model model, TaskDTO taskDTO) {
         model.addAttribute("id", id);
         model.addAttribute("updateTask", taskDTO);
         model.addAttribute("updateTask", taskService.findTask(id));
@@ -57,9 +57,9 @@ public class TaskController {
     //update employee action
     @PostMapping("/task-update/{id}")
     public String updateTask(@PathVariable("id") Integer id,
-                                 @ModelAttribute("updateTask") TaskDTO taskDTO,
-                                 BindingResult result) {
-        if(result.hasErrors()){
+                             @ModelAttribute("updateTask") TaskDTO taskDTO,
+                             BindingResult result) {
+        if (result.hasErrors()) {
             return "update_task";
         }
         taskService.updateTask(id, taskDTO);
@@ -75,14 +75,14 @@ public class TaskController {
 
     //top 5 employees
     @GetMapping("/task/top-five")
-    public String getTopFive(Model model){
+    public String getTopFive(Model model) {
         model.addAttribute("topFiveEmployees", taskService.getTopFiveEmployees());
         return "top_five_employees";
     }
 
     //active tasks
     @GetMapping("/task/active")
-    public String getActiveTasks(Model model){
+    public String getActiveTasks(Model model) {
         model.addAttribute("activeTasks", taskService.getActiveTasks());
         return "active_tasks";
     }
