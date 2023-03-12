@@ -22,17 +22,19 @@
       <td>Description</td>
       <td>Due Date</td>
       <td>Assignee</td>
-      <!--      <td sec:authorize="isAnonymous()">New Group Order</td>-->
+      <td>Action</td>
     </tr>
     <tr th:each="task : ${tasks}">
       <td th:text="${task.title}"></td>
       <td th:text="${task.description}"></td>
       <td th:text="${task.dueDate}"></td>
-      <td th:text="${task.assignee.getFullName}"></td>
-      <!--      <td><a href="#" th:href="@{'/restaurant-details/'+${restaurant.restaurantId}}" class="btn btn-info btn-sm">View Details</a></td>-->
-      <!--      <td sec:authorize="isAnonymous()"><a href="#" th:href="@{'/restaurant/'+${restaurant.restaurantId}+'/group-order/create'}" class="btn btn-success btn-sm">New Group Order</a></td>-->
+      <td th:text="${task?.assignee?.getFullName}"></td>
+      <td><a href="#" th:href="@{'/task/update-form/'+${task.taskId}}" class="btn btn-info btn-sm mb-1">Update</a>
+        <a href="#" th:href="@{'/task-delete/'+${task.taskId}}" class="btn btn-success btn-sm">Delete</a>
+      </td>
     </tr>
   </table>
+  <div><a href="#" th:href="@{/task/add}" class="btn btn-success btn-lg mb-3">Add Task</a></div>
 </div>
 
 </body>

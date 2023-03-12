@@ -24,7 +24,7 @@
       <!--      <td sec:authorize="isAnonymous()">New Group Order</td>-->
     </tr>
     <tr th:each="employee : ${topFiveEmployees}">
-      <td th:text="${employee.employee.getFullName}"></td>
+      <td th:text="${employee?.employee?.getFullName}"></td>
 <!--      <td th:text="${employee.howMany}"></td>-->
       <!--      <td><a href="#" th:href="@{'/restaurant-details/'+${restaurant.restaurantId}}" class="btn btn-info btn-sm">View Details</a></td>-->
       <!--      <td sec:authorize="isAnonymous()"><a href="#" th:href="@{'/restaurant/'+${restaurant.restaurantId}+'/group-order/create'}" class="btn btn-success btn-sm">New Group Order</a></td>-->

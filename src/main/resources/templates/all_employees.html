@@ -23,6 +23,7 @@
       <td>Phone number</td>
       <td>Date of Birth</td>
       <td>Monthly Salary</td>
+      <td>Action</td>
 <!--      <td sec:authorize="isAnonymous()">New Group Order</td>-->
     </tr>
     <tr th:each="employee : ${employees}">
@@ -31,10 +32,12 @@
       <td th:text="${employee.phoneNumber}"></td>
       <td th:text="${employee.dateOfBirth}"></td>
       <td th:text="${employee.monthlySalary}"></td>
-<!--      <td><a href="#" th:href="@{'/restaurant-details/'+${restaurant.restaurantId}}" class="btn btn-info btn-sm">View Details</a></td>-->
-<!--      <td sec:authorize="isAnonymous()"><a href="#" th:href="@{'/restaurant/'+${restaurant.restaurantId}+'/group-order/create'}" class="btn btn-success btn-sm">New Group Order</a></td>-->
+      <td><a href="#" th:href="@{'/employee/update-form/'+${employee.employeeId}}" class="btn btn-info btn-sm">Update</a>
+        <a href="#" th:href="@{'/employee-delete/'+${employee.employeeId}}" class="btn btn-success btn-sm">Delete</a>
+      </td>
     </tr>
   </table>
+  <div><a href="#" th:href="@{/employee/add}" class="btn btn-success btn-lg">Add Employee</a></div>
 </div>
 
 </body>
