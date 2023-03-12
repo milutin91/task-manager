@@ -11,7 +11,7 @@ public class TeamMapper {
     @Autowired
     TeamRepository teamRepository;
 
-    public Team mapDtoToEntity(TeamDTO teamDTO){
+    public Team mapDtoToEntity(TeamDTO teamDTO) {
         Team team = new Team();
 
         team.setTeamName(teamDTO.getTeamName());
@@ -19,7 +19,7 @@ public class TeamMapper {
         return team;
     }
 
-    public TeamDTO mapEntityToDto(Team team){
+    public TeamDTO mapEntityToDto(Team team) {
         TeamDTO teamDTO = new TeamDTO();
 
         teamDTO.setTeamName(team.getTeamName());

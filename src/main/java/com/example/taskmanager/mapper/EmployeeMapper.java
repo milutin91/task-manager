@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EmployeeMapper {
-    public Employee mapEmployeeDtoToEntity(EmployeeDTO employeeDTO){
+    public Employee mapEmployeeDtoToEntity(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
 
         employee.setFullName(employeeDTO.getFullName());
@@ -18,7 +18,7 @@ public class EmployeeMapper {
         return employee;
     }
 
-    public EmployeeDTO mapEmployeeEntityToDto(Employee employee){
+    public EmployeeDTO mapEmployeeEntityToDto(Employee employee) {
         EmployeeDTO employeeDTO = new EmployeeDTO();
 
         employeeDTO.setEmployeeId(employee.getEmployeeId());

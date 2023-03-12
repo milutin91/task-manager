@@ -1,7 +1,6 @@
 package com.example.taskmanager.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -23,7 +22,7 @@ public class Employee {
     @JoinColumn(name = "employee_team_id")
     private Team team;
 
-    @OneToMany(mappedBy = "assignee", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL)
     private List<Task> tasks;
 
     public Employee() {
@@ -105,10 +104,6 @@ public class Employee {
                 ", team=" + team +
                 '}';
     }
-//@Override
-//public String toString() {
-//    return fullName;
-//}
 }
 
 

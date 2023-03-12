@@ -13,7 +13,7 @@ public class TeamController {
 
     //    read all teams
     @GetMapping("/teams/all")
-    public String getAllTeams(Model model){
+    public String getAllTeams(Model model) {
         model.addAttribute("teams", teamService.getAllTeams());
         return "all_teams";
     }

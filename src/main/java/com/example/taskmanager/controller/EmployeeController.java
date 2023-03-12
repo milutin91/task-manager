@@ -17,33 +17,35 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-//employee add form
+    //employee add form
     @GetMapping("/employee/add")
     public String addEmployee(EmployeeDTO employeeDTO, Model model) {
         model.addAttribute("newEmployee", employeeDTO);
         return "add_employees";
     }
-//employee add action
-    @PostMapping("/employee/create")
-    public String createEmployee(@ModelAttribute("newEmployee") EmployeeDTO employeeDTO, BindingResult bindingResult){
 
-        if(bindingResult.hasErrors()){
+    //employee add action
+    @PostMapping("/employee/create")
+    public String createEmployee(@ModelAttribute("newEmployee") EmployeeDTO employeeDTO, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
             return "add_employees";
         }
         employeeService.createEmployee(employeeDTO);
 
         return "redirect:/employee/all";
     }
-//read all employees
+
+    //read all employees
     @GetMapping("/employee/all")
-    public String getAllEmployees(Model model){
+    public String getAllEmployees(Model model) {
         model.addAttribute("employees", employeeService.getAllEmployees());
         return "all_employees";
     }
 
     //Update employee form
     @GetMapping("/employee/update-form/{id}")
-    public String updateEmployeeForm(@PathVariable("id") Integer id, Model model, EmployeeDTO employeeDTO){
+    public String updateEmployeeForm(@PathVariable("id") Integer id, Model model, EmployeeDTO employeeDTO) {
         model.addAttribute("id", id);
         model.addAttribute("updateEmployee", employeeDTO);
         model.addAttribute("updateEmployee", employeeService.findEmployee(id));
@@ -54,9 +56,9 @@ public class EmployeeController {
     //update employee action
     @PostMapping("/employee-update/{id}")
     public String updateEmployee(@PathVariable("id") Integer id,
-                                   @ModelAttribute("updateEmployee") EmployeeDTO employeeDTO,
-                                   BindingResult result) {
-        if(result.hasErrors()){
+                                 @ModelAttribute("updateEmployee") EmployeeDTO employeeDTO,
+                                 BindingResult result) {
+        if (result.hasErrors()) {
             return "update_employee";
         }
         employeeService.updateEmployee(id, employeeDTO);

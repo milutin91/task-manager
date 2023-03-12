@@ -7,12 +7,12 @@ import java.time.LocalDateTime;
 
 public class TaskDTO {
 
-        private int taskId;
-        private String title;
-        private String description;
+    private int taskId;
+    private String title;
+    private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-        private LocalDateTime dueDate;
-        private Employee assignee;
+    private LocalDateTime dueDate;
+    private Employee assignee;
 
     public TaskDTO() {
     }
